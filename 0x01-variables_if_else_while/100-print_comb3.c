@@ -6,29 +6,26 @@
  *
  * Return: always 0
  */
+
 int main(void)
 {
+	int Num1, Num2;
 
-	int n1 = 0, n2;
-
-	while (n1 <= 9)
+	for (Num1 = 0; Num1 < 9; Num1++)
 	{
-		n2 = 0;
-		while (n2 <= 9)
+		for (Num2 = Num1 + 1; Num2 < 10; Num2++)
 		{
-			if (n1 != n2 && n1 > n2)
-			{
-				putchar(n1 + 48);
-				putchar(n2 + 48);
-				if (n1 + n2 != 17)
-				{
-					putchar(',');
-					putchar(' ');
-				}
-			}
-			} n2++;
-		} n1++;
+			putchar((Num1 % 10) + '0');
+			putchar((Num2 % 10) + '0');
+
+			if (Num1 == 8 && Num2 == 9)
+				continue;
+			putchar(',');
+			putchar(' ');
+		}
 	}
+
 	putchar('\n');
+
 	return (0);
 }
