@@ -9,23 +9,23 @@
 int main(void)
 
 {
-	unsigned long count, a, b, c;
+	int count;
 
-	a = 0;
-	b = 1;
+	unsigned long f1 = 0, f2 = 1, sum;
+
 	for (count = 0; count < 50; count++)
 
 	{
-		c = a + b;
-		b = b;
-		b = c;
-		printf("%lu", c);
+		sum = f1 + f2;
+		printf("%lu", sum);
+
+		f1 = f2;
+		f2 = sum;
+
 		if (count == 49)
-			putchar('\n');
+			printf("\n");
 		else
-		{
 			printf(", ");
-		}
 	}
 
 	return (0);
