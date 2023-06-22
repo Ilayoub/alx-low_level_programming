@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * main - prints 10 times of the numbers from 0 to 14
+ * more_numbers - prints 10 times of the numbers from 0 to 14
  * must be followed by a new line
  * Return: Always 0.
  */
