@@ -1,61 +1,78 @@
 #include "main.h"
 
 /**
- * infinite_add - the function adds two numbers
+ * rev_string - the function reverses an array
+ * @n: integer
+ * Return: 0
+ */
+
+void rev_string(char *n)
+{
+	int a = 0;
+	int b = 0;
+	char temp;
+
+	while (*(n + a) != '\0')
+	{
+		a++;
+	}
+	a--;
+
+	for (b = 0; b < a; b++, a--)
+	{
+		temp = *(n + b);
+		*(n + b) = *(n + a);
+		*(n + a) = temp;
+	}
+}
+
+/**
+ * infinite_add - the function adds two numbers together
  * @n1: represents the 1st number to add
  * @n2: represents the 2nd number to add
  * @r: pointer
  * @size_r: buffer size
- * Return: pointer to calling function
+ * Return: pointer for calling the function
  */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
-
 {
-	int i = 0, j = 0, c = 0, a, b, sum, big;
-	
-	while (n1[i] != '\0')
-		i++;
-	while (n2[j] != '\0')
-		j++;
-	if (i > j)
-		big = i;
-	else
-		big = j;
-	if ((big + 1) >= size_r)
+	int overflow = 0, a = 0, b = 0, digits = 0;
+	int val1 = 0, val2 = 0, temp_tot = 0;
+
+	while (*(n1 + a) != '\0')
+		a++;
+	while (*(n2 + b) != '\0')
+		b++;
+	a--;
+	b--;
+	if (b >= size_r || a >= size_r)
 		return (0);
-	r[big + 1] = '\0';
-	
-	while (big >= 0)
+	while (b >= 0 || a >= 0 || overflow == 1)
 	{
-		a = (n1[i - 1] - '0');
-		b = (n1[j - 1] - '0');
-		if (i > 0 && j > 0)
-			sum = a + b + c;
-		else if (i < 0 && j > 0)
-			sum = b + c;
-		else if (i > 0 && j < 0)
-			sum = a + c;
+		if (a < 0)
+			val1 = 0;
 		else
-			sum = c;
-		
-		if (sum > 9)
-		{
-			c = sum / 10;
-			sum = (sum % 10) + '0';
-		}
+			val1 = *(n1 + a) - '0';
+		if (b < 0)
+			val2 = 0;
 		else
-		{
-			c = 0;
-			sum = sum + '0';
-		}
-		r[big] = sum;
-		i--;
-		j--;
-		big--;
+			val2 = *(n2 + b) - '0';
+		temp_tot = val1 + val2 + overflow;
+		if (temp_tot >= 10)
+			overflow = 1;
+		else
+			overflow = 0;
+		if (digits >= (size_r - 1))
+			return (0);
+		*(r + digits) = (temp_tot % 10) + '0';
+		digits++;
+		b--;
+		a--;
 	}
-	if (*(r) != 0)
-		return (r);
-	else
-		return (r + 1);
+	if (digits == size_r)
+		return (0);
+	*(r + digits) = '\0';
+	rev_string(r);
+	return (r);
 }
