@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * string_toupper - the function changes all lowercase 
+ * string_toupper - the function changes all lowercase
  * letters of a string to uppercase
  * @n: pointer
  * Return: n
