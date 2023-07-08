@@ -1,1 +1,1 @@
-The begenning of the long life time coding
+0x0A. C - argc, argv
