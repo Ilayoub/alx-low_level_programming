@@ -1,28 +1,30 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * main - the function multiplies two numbers
- * @argc: the argument count
- * @argv: the argument vector
+ * @argc: the number of command arguments
+ * @argv: the pointer to an array of command arguments
  * Return: 0;
  */
 
 int main(int argc, char *argv[])
 
 {
-	int i, mul;
+	int mul;
 
-	mul = 1;
-	if (argc < 3)
+
+	if (argc == 3)
+	{
+		mul = atoi(argv[1]) * atoi(argv[2]);
+		printf("%d\n", mul);
+	}
+	else 
 	{
 		printf("Error\n");
 		return (1);
 	}
-	for (i = 1; i < argc; i++)
-	{
-		mul = mul * atoi(argv[i]);
-	}
-	printf("%d\n", mul);
+
 	return (0);
 }
