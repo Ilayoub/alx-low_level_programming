@@ -25,7 +25,7 @@ int wrdcnt(char *s)
 }
 
 /**
- * strtow - splits a string into words
+ * _strtow - splits a string into words
  * @str: the string to split
  * Return: the pointer to the array of strings
  */
@@ -37,10 +37,12 @@ char **strtow(char *str)
 	if (str == NULL || *str == '\0')
 		return (NULL);
 	n = wrdcnt(str);
-	x = malloc((n + 1) * sizeof(char *));
+	if (n == 1)
+		return (NULL);
+	x = (char **)malloc((n * sizeof(char *)));
 	if (x == NULL)
 		return (NULL);
-	x[n] = NULL;
+	x[n - 1] = NULL;
 	a = 0;
 	while (str[a])
 	{
@@ -49,15 +51,17 @@ char **strtow(char *str)
 			for (b = 1; str[a + b] != ' ' && str[a + b]; b++)
 				;
 			b++;
-			x[xy] = malloc(b * sizeof(char));
+			x[xy] = (char *)malloc(b * sizeof(char));
+			b--;
 			if (x[xy] == NULL)
 			{
 				for (c = 0; c < xy; c++)
 					free(x[c]);
+				free(x[n - 1]);
 				free(x);
 				return (NULL);
 			}
-			for (d = 0; d < b - 1; d++)
+			for (d = 0; d < b; d++)
 				x[xy][d] = str[a + d];
 			x[xy][d] = '\0';
 			xy++;
