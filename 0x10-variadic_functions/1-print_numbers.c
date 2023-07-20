@@ -12,15 +12,15 @@
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
 	va_list nums;
-	unsigned int IND;
+	unsigned int ind;
 
 	va_start(nums, n);
 
-	for (IND = 0; IND < n; IND++)
+	for (ind = 0; ind < n; ind++)
 	{
 		printf("%d", va_arg(nums, int));
 
-		if (IND != (n - 1) && separator != NULL)
+		if (ind != (n - 1) && separator != NULL)
 			printf("%s", separator);
 	}
 
